@@ -34,7 +34,7 @@
       }#name{display:none;}
       #divmain{
         display: inline-block;
-        width:calc(100% - 370px);
+        width:calc(100% - 280px);
         height:100%;
         background-color: #f3f3f3;
         position:absolute;
@@ -260,9 +260,39 @@
         opacity: 0.2;
         transition: all 0.2s;
       }
+      #asdffdsa{
+        background-color: #3d303c;
+        height: 70px;
+      }
+      #asdffff{
+        position: fixed;
+        display: inline-block;
+        width: 100px;
+        height: 70px;
+        background-color: #3d303c;
+        z-index: -1;
+      }
+      #hoomicon{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px 10px 0px 10px;
+        background-color: white;
+        opacity: 0.1;
+      }
+      #mentions{
+        display: inline-block;
+        width: 100%;
+        transition: all 0.2s;
+      }
+      #mentions:hover{
+        opacity: 0.2;
+        transition: all 0.2s;
+      }
     </style>
   </head>
   <body>
+    <div id="asdffff"></div>
     <div id="login">
     </div>
     <div id="logindiv">
@@ -278,17 +308,10 @@
     </div>
     <div id="joined">
       <div id="makeroom" onclick="makero();">
-
+        <div style="height:14px;"></div>
+        <div id="hoomicon"></div>
       </div>
       <!--시작-->
-      <div id="room" value="main">
-      <div id="divjoin1"></div>
-      <div id="divjoin2"></div>
-      <ple id="plejoin"><strong>Main</strong></ple><div></div>
-      <div id="divjoin2"></div>
-      <ple id="plejoin1">기본방/아직 이것뿐</ple>
-      <div id="divjoin1"></div>
-      </div>
       <!--끝-->
     </div>
     <div id="channell">
@@ -299,16 +322,36 @@
       <div style="display: inline-block;width:8px;"></div>
       <ple style="color:white;opacity:0.3;font-size:12px;"><strong>#배정받지 못한자들의 방</strong></ple>
       </div>
+
       <div>
         <div style="height:70px;"></div>
         <div style="display: inline-block;width:8px;"></div>
         <ple style="color:white;opacity:0.5;font-size:16px;"onclick="make();">Channels</ple>
+        <!--div style="display:inline-block;width:11px;height:11px;background-color:white;opacity:0.2;border-radius:2px;"><font style="">+</font></div-->
         <!--asd-->
         <div></div>
         <div id="chann">
           <div id="channels">
             <div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">#</ple>
             <ple style="color:white;opacity:0.7;font-size:14px">시작입니다</ple>
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <div style="height:70px;"></div>
+        <div style="display: inline-block;width:8px;"></div>
+        <ple style="color:white;opacity:0.5;font-size:16px;">Direct Message</ple>
+        <!--asd-->
+        <div></div>
+        <div id="chansn">
+          <div id="mentions">
+            <div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">●</ple>
+            <ple style="color:white;opacity:0.7;font-size:14px">exmuh(나)</ple>
+          </div>
+          <div id="mentions">
+            <div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">○</ple>
+            <ple style="color:white;opacity:0.7;font-size:14px">ex</ple>
           </div>
         </div>
 
@@ -339,14 +382,6 @@
       </form>
     </div>
     <div id="divvdi"></div>
-    <ple id="online">
-      <div id="inli"></div>
-      <div id="inlii"></div>
-      <div id="in">
-        <strong id="onliin">OnLine</strong>
-      </div>
-
-    </ple>
     <input id="name" class="name" type="text" readonly>
     <div id="box" class="box">
     <script src="/socket.io/socket.io.js"></script> <!-- 1 -->
@@ -445,6 +480,7 @@
         }
         $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
       }
+      autolink($('.chatlog'));
       });
       socket.on('change name', function(name){ //4
         $('#name').val(name);
@@ -516,6 +552,7 @@
         <div style="display: inline-block;width:8px;"></div>
         <ple style="color:white;opacity:0.3;font-size:12px;"><strong>${roomuserr}</strong></ple>`);
       }
+      let rorohtml=$("#joined").html();
       let lastruof="";
       let roomchannelff="";
       socket.on('receive online', function(users,userss,dod,roname,rouser,romessage,roomis,roomchannel,roomchannelf){ //4
@@ -537,7 +574,7 @@
           $("#chann").html(ruof);
           lastruof=ruof;
         }
-        var rohtml=`<div id="makeroom" onclick="makero();"></div>`;
+        var rohtml=rorohtml;
         for(var a=0;a<roname.length;a++){
           if(roname[a]!=0){
             rohtml=rohtml+`
@@ -552,40 +589,37 @@
           }
         }
         if(ronamelast!=rohtml){
-          $("#joined").html(rohtml);
+          $("#joined").html(rohtml+`
+            <div style="display:inline-block;width:70px;height:70px;text-align:center;">
+              <div style="height:10px;"></div>
+              <div id="aafsdaf" onclick="makero();">
+              <ple style="color:white;opacity:0.5;font-size:40px;">+</ple>
+              </div>
+            </div>
+            `);
           ronamelast=rohtml;
         }
         onuser=users;
         onusers=userss;
         dodd=dod;
-        var tag=`<div id="inli"></div>
-        <div id="inlii"></div>
-        <div id="in">
-          <strong id="onliin">OnLine</strong>
-        </div>`
+        var tag=``
         var writtting="";
         for(var i=0;i<onuser.length;i++){
           if(onuser[i]==0){}
           else{
             if(dodd[i]=="글쓰는중"){
-              tag=tag+`<div id="diib3"></div>
-              <div id="in2"></div>
-              <div id="onlinemember">
-                <strong id="onlinename">${onuser[i]}</strong>
-                <div></div>
-                <ple id="onlined">●온라인</ple>
-              </div>
-              <div></div>`
+              tag=tag+`<div id="mentions"><div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">●</ple>
+              <ple style="color:white;opacity:0.7;font-size:14px">${onuser[i]}</ple></div>`
             }
             else{
-          tag=tag+`<div id="diib3"></div>
-          <div id="in2"></div>
-          <div id="onlinemember">
-            <strong id="onlinename">${onuser[i]}</strong>
-            <div></div>
-            <ple id="onlined">●${dodd[i]}</ple>
-          </div>
-          <div></div>`
+              if(dodd[i]=="온라인"){
+                tag=tag+`<div id="mentions"><div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">●</ple>
+                <ple style="color:white;opacity:0.7;font-size:14px">${onuser[i]}</ple></div>`
+              }
+              else{
+                tag=tag+`<div id="mentions"><div style="display: inline-block;width:14px;"></div><ple style="color:white;opacity:0.2;font-size:16px">○</ple>
+                <ple style="color:white;opacity:0.7;font-size:14px">${onuser[i]}</ple></div>`
+              }
           }
           if(dodd[i]=="글쓰는중" && onuser[i]!=name){
             if(writtting==""){writtting=onuser[i];}
@@ -593,7 +627,10 @@
           }
         }
         }
-        $("#online").html(tag);
+        if(lasttag!=tag){
+          $("#chansn").html(tag);
+          lasttag=tag;
+        }
         if(writtting!=""){
           $("#writing").html(`<div id="div33"></div><strong id="writingg">${writtting}님이 글을 쓰는중</strong>`);
         }
@@ -603,9 +640,22 @@
       });
       document.getElementById('but1').addEventListener('click', function () {
     }, false);
+      let lasttag="";
       let lastdo="";
       let dodo=1;
       setInterval(function() {
+        var iod=$('#message').val();
+        var iodd=iod.split("  ");
+        var iod="";
+        for(var i=0;i<iodd.length;i++){
+          if(i!=iodd.length-1){
+            iod=iod+iodd[i]+"<br> 󠀀󠀀 ";
+          }
+          else{
+            iod=iod+iodd[i];
+          }
+        }
+        $('#message').val(iod);
         if(document.hidden==false){
           doing="온라인";
         }
@@ -646,6 +696,41 @@
         }
         return 0;
       }
+      //sdaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
+        var re = /(?:(?=(?:http|https):)([a-zA-Z][-+.a-zA-Z\d]*):(?:((?:[-_.!~*'()a-zA-Z\d;?:@&=+$,]|%[a-fA-F\d]{2})(?:[-_.!~*'()a-zA-Z\d;\/?:@&=+$,\[\]]|%[a-fA-F\d]{2})*)|(?:(?:\/\/(?:(?:(?:((?:[-_.!~*'()a-zA-Z\d;:&=+$,]|%[a-fA-F\d]{2})*)@)?(?:((?:(?:(?:[a-zA-Z\d](?:[-a-zA-Z\d]*[a-zA-Z\d])?)\.)*(?:[a-zA-Z](?:[-a-zA-Z\d]*[a-zA-Z\d])?)\.?|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|\[(?:(?:[a-fA-F\d]{1,4}:)*(?:[a-fA-F\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|(?:(?:[a-fA-F\d]{1,4}:)*[a-fA-F\d]{1,4})?::(?:(?:[a-fA-F\d]{1,4}:)*(?:[a-fA-F\d]{1,4}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}))?)\]))(?::(\d*))?))?|((?:[-_.!~*'()a-zA-Z\d$,;:@&=+]|%[a-fA-F\d]{2})+))|(?!\/\/))(\/(?:[-_.!~*'()a-zA-Z\d:@&=+$,]|%[a-fA-F\d]{2})*(?:;(?:[-_.!~*'()a-zA-Z\d:@&=+$,]|%[a-fA-F\d]{2})*)*(?:\/(?:[-_.!~*'()a-zA-Z\d:@&=+$,]|%[a-fA-F\d]{2})*(?:;(?:[-_.!~*'()a-zA-Z\d:@&=+$,]|%[a-fA-F\d]{2})*)*)*)?)(?:\?((?:[-_.!~*'()a-zA-Z\d;\/?:@&=+$,\[\]]|%[a-fA-F\d]{2})*))?)(?:\#((?:[-_.!~*'()a-zA-Z\d;\/?:@&=+$,\[\]]|%[a-fA-F\d]{2})*))?)/img;
+
+          function makeHTML(textNode) {
+              var source = textNode.data;
+              return source.replace(re, function() {
+                  var url = arguments[0];
+                  var a = $('<a></a>').attr({'href': url, 'target': '_blank'}).text(url);
+                  return url.match(/^https?:\/\/$/) ? url : $('<div></div>').append(a).html();
+              });
+          };
+
+          function eachText(node, callback) {
+              $.each(node.childNodes, function() {
+                  if (this.nodeType != 8 && this.nodeName != 'A') {
+                      this.nodeType != 1 ? callback(this) : eachText(this, callback);
+                  }
+              });
+          };
+
+      	function autolink(obj){
+      		return obj.each(function() {
+      	            var queue = [];
+      	            eachText(this, function(e) {
+      	                var html = makeHTML(e);
+      	                if (html != e.data) {
+      	                    queue.push([e, makeHTML(e)]);
+      	                }
+      	            });
+      	            $.each(queue, function(i, x) {
+      	                $(x[0]).replaceWith(x[1]);
+      	            });
+      	        });
+      	};
     </script>
   </body>
 </html>

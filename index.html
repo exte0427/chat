@@ -7,6 +7,30 @@
     <title>exat</title>
     <link rel="shortcut icon" type="image⁄x-icon" href="https://lh3.googleusercontent.com/GthzQWUsD3S0zOesCwIkjqTLeyrm9hUDPoasUHLT_vf3PNujeRbU7C5Pz1jBWxpF-P3SCnAw3Y2FafsjjP_o=w1920-h942">
     <style>
+    @keyframes fadein { /* Safari and Chrome */
+      from {
+          width: 350px;
+          height: 250px;
+          opacity: 0;
+      }
+      to {
+        width: 500px;
+        height: 400px;
+        opacity: 1;
+      }
+    }
+    @keyframes fadein2 { /* Safari and Chrome */
+      from {
+          top:10px;
+          right:-500px;
+          opacity: 0;
+      }
+      to {
+        top:10px;
+        right:10px;
+        opacity: 1;
+      }
+    }
     html, body {
     	width: 100%; height: 100%;
       border: none;
@@ -69,7 +93,7 @@
         width: 11px;
         border-radius: 10px;
         background-color:white;
-        cursor:pointer
+        cursor:pointer;
       }
       #texst{
         background: linear-gradient( to right, #dee5ef, white );
@@ -101,10 +125,17 @@
         width: 1px;
       }
       #joined{
+        position: fixed;
         display: inline-block;
         width: 70px;
         height: 100%;
-        background-color:#3d303c;
+        background-color:#242431;
+        z-index: 100;
+      }
+      #thenJoined{
+        display: inline-block;
+        width: 70px;
+        height: 100%;
       }
       #mesdiv{
         display: inline-block;
@@ -129,6 +160,7 @@
         display: inline-block;
         width: 20px;
         height: 100%;
+        cursor: pointer;
       }
       #online{
         left: calc(100% - 100px);
@@ -182,7 +214,7 @@
       }
       #login{
         position: fixed;
-        z-index: 1;
+        z-index: 300;
         opacity: 0.5;
 
         width:100%;
@@ -196,7 +228,7 @@
         left:50%;
         transform: translate(-50%,-50%);
         position: fixed;
-        z-index: 2;
+        z-index: 400;
         width: 450px;
         height: 400px;
         border-radius:30px;
@@ -223,7 +255,7 @@
       #mention{display: inline-block;background-color: #EDEFF7;color:#7289E0;border-radius:5px;}
       #writing{height: 20px;}
       #writingg{font-size: 11px;color: #A4A4A4;}
-      #ex_file{opacity:0;width: 10px;height: 10px;position: fixed;}
+      #ex_file{opacity:0;width: 10px;height: 10px;position: fixed;cursor:pointer;}
       #divjoin1{height: 20px;}
       #divjoin2{display: inline-block;width: 20px;}
       #plejoin{font-size:20px;color:#666666;}
@@ -232,16 +264,16 @@
       #aafsdaf:hover{
         transition: all 0.25s;
         border-radius: 30px;
-        background-color: #82687f;
+        background-color: #2d2d3c;
       }
       #aafsdaf{
-        margin:0 auto;height:60px;width:60px;display:inline-block;background-color:#382a36;border-radius: 17px;text-align:center;transition: all 0.25s;
+        margin:0 auto;height:60px;width:60px;display:inline-block;background-color:#2a2a38;border-radius: 17px;text-align:center;transition: all 0.25s;
       }
       #room{transition: all 0.25s;}
-      #makeroom{height: 70px;background-color:#312430;text-align: center;}
-      #asd{color:#4d3a4b;font-size: 30px;line-height: 100%;}
-      #channell{display: inline-block;height: 100%;width: 200px;background-color: #4c394b;position: fixed;z-index: 2}
-      #div22{display: inline-block;width: 200px;background-color:#3a133e;}
+      #makeroom{height: 60px;background-color:#242431;text-align: center;}
+      #asd{color:#2a2a38;font-size: 30px;line-height: 100%;}
+      #channell{display: inline-block;height: 100%;width: 210px;background-color: #2a2a38;position: fixed;z-index: 2}
+      #div22{display: inline-block;width: 205px;background-color:#3a133e;}
       #chat{background-color: white;}
       #divvdi{
         display: inline-block;
@@ -255,21 +287,23 @@
         display: inline-block;
         width: 100%;
         transition: all 0.2s;
+        cursor: pointer;
       }
       #channels:hover{
         opacity: 0.2;
         transition: all 0.2s;
       }
       #asdffdsa{
-        background-color: #3d303c;
+        background-color: #2a2a38;
         height: 70px;
+        box-shadow: -2px 0px 10px -4px black;
       }
       #asdffff{
         position: fixed;
         display: inline-block;
         width: 100px;
         height: 70px;
-        background-color: #3d303c;
+        background-color: #2a2a38;
         z-index: -1;
       }
       #hoomicon{
@@ -289,13 +323,17 @@
         opacity: 0.2;
         transition: all 0.2s;
       }
+      #sdaasdfasdfasdfa:hover{
+        box-shadow: 2px 2px 5px 0px #e6e6e6;
+        transition: all 0.2s;
+      }
     </style>
   </head>
   <body>
     <div id="asdffff"></div>
     <div id="login">
     </div>
-    <div id="logindiv">
+    <!--<div id="logindiv">
       <div id="divi3"></div>
       <div id="divv5"></div>
       <input type="text" id="id"placeholder="id">
@@ -305,16 +343,17 @@
       <div id="divi3"></div>
       <div id="divv6"></div>
       <input type="button" id="ok" value="login">
-    </div>
+    </div>-->
     <div id="joined">
       <div id="makeroom" onclick="makero();">
         <div style="height:14px;"></div>
         <div id="hoomicon"></div>
-      </div>
+      </div><div style="height:1px;"></div>
+<div style="display: inline-block;width:8.5px;"></div>
+<div style="display: inline-block;height:6px;background-color:#21212d;border-radius:50px;width:40px;"></div><div></div>
       <!--시작-->
       <!--끝-->
-    </div>
-    <div id="channell">
+    </div><div id="thenJoined"></div><div id="channell">
       <div id="asdffdsa">
       <div style="height:8px;"></div>
       <div style="display: inline-block;width:8px;"></div>
@@ -327,6 +366,7 @@
         <div style="height:70px;"></div>
         <div style="display: inline-block;width:8px;"></div>
         <ple style="color:white;opacity:0.5;font-size:16px;"onclick="make();">Channels</ple>
+        <div style="display:inline-block;width:90px;"></div><strong style="color:#949494;font-size:20px;cursor:pointer" onclick="make();">+</strong>
         <!--div style="display:inline-block;width:11px;height:11px;background-color:white;opacity:0.2;border-radius:2px;"><font style="">+</font></div-->
         <!--asd-->
         <div></div>
@@ -361,8 +401,8 @@
     <div id="divmain">
       <div id="contant">
         <div style="height:20px;"></div>
-        <div style="display:inline-block;width:10px;"></div>
-        <ple id="asd"><strong>#기본채팅방</strong></ple>
+        <div style="display:inline-block;width:20px;"></div>
+        <ple id="asd"><strong style="opacity:0.8;">#</strong><div style="display:inline-block;width:20px;"></div><strong>기본채팅방</strong></ple>
       </div>
       <div id="divdiv2">
         <div id="chatLog" class="chatlog" readonly></div>
@@ -381,12 +421,80 @@
       </div>
       </form>
     </div>
+    <div id="asdfasdfasdfasdfasdfasdffsd" style="animation: fadein 0.5s;display: inline-block;
+            background-color: white;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            position: fixed;
+            z-index: 10000000001;
+            width: 500px;
+            height: 400px;
+            border-radius:30px;">
+      <div style="height:40px;"></div>
+      <div style="height:50px;text-align:center"><strong style="font-size:30px;color:#2a2a38;">다시오신걸 환영해요!</strong></div>
+      <div style="height:20px;"></div>
+      <div style="height:100px;text-align:center"><form id="sadfasdfasfafdsafdsdsfadsfasfd"><strong style="color:#2a2a38;">ID</strong><div style="display:inline-block;width:280px;"></div><div></div><input autocomplete="off" id="sdaasdfasdfasdfa" type="text" style="height:50px;width:300px;text-align:center;border-radius: 0px 30px 30px 30px;
+      border:none;background-color: #f5f5f7;transition: all 0.2s;
+        "/><div style="height:10px;"></div><strong style="color:#2a2a38;">PASSWORD</strong><div style="display:inline-block;width:210px;"></div><div></div><input autocomplete="off" id="sdaasdfasdfasdfas" type="password" style="height:50px;width:300px;text-align:center;border-radius: 0px 30px 30px 30px;
+        border:none;background-color: #f5f5f7;transition: all 0.2s;
+          "/><div style="height:40px;"></div><input type="submit" value="LOGIN!" style="background-color:#f4f4f4;border:none;width:200px;height:40px;border-radius:10px;cursor:pointer"></form></div>
+    </div>
     <div id="divvdi"></div>
     <input id="name" class="name" type="text" readonly>
-    <div id="box" class="box">
+    <div id="box" class="box"></div>
     <script src="/socket.io/socket.io.js"></script> <!-- 1 -->
     <script src="//code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+    function reposad(){
+      $('#asdfasdfasdfasdfasdfasdffsd').css({
+        width:"300px",
+        height:"200px",
+        opacity: "0",
+        transition:" all 0.2s",
+      });
+      new2("s","성공적으로 로그인되었습니다!");
+      setTimeout(d=>{
+        $("#asdfasdfasdfasdfasdfasdffsd").remove();
+        $("#login").remove();
+
+      },100);
+    }
+    let socket = io();
+    let myy=0;
+    let ps;
+    let name;
+    function new2(STR,STR2){
+      if(STR=="error"){
+        $("body").append(`<div id="sdfadfadsfafds" style="animation: fadein2 0.2s;position:fixed;z-index:1000000000000;top:10px;right:10px;height:70px;width: fit-content;background-color:#f4f4f4;border-radius:10px;"><div style="height:10px;">
+        </div><div style="display:inline-block;width:20px;"></div><strong style="color:#2a2a38;font-size:20px;color:#ff7967">Error</strong><div></div><div style="display:inline-block;width:20px;"></div><strong style="color:#373749;font-size:13px;">${STR2}</strong><div style="display:inline-block;width:20px;"></div></div>`)
+      }
+      else{
+        $("body").append(`<div id="sdfadfadsfafds" style="animation: fadein2 0.2s;position:fixed;z-index:1000000000000;top:10px;right:10px;height:70px;width: fit-content;background-color:#f4f4f4;border-radius:10px;"><div style="height:10px;">
+        </div><div style="display:inline-block;width:20px;"></div><strong style="color:#2a2a38;font-size:20px;color:#2dce7d">:D</strong><div></div><div style="display:inline-block;width:20px;"></div><strong style="color:#373749;font-size:13px;">${STR2}</strong><div style="display:inline-block;width:20px;"></div></div>`)
+      }
+      setTimeout(d=>{
+        $('#sdfadfadsfafds').css({
+          right:"-500px",
+          opacity: "0",
+          transition:" all 0.2s",
+        });
+        setTimeout(d=>{
+          $("#sdfadfadsfafds").remove();
+        },100);
+      },1000);
+    }
+    $('#sadfasdfasfafdsafdsdsfadsfasfd').on('submit', function(e){ //2
+      name=$("#sdaasdfasdfasdfa").val();
+      ps=$("#sdaasdfasdfasdfas").val();
+      myy=1;
+      dddd();
+      e.preventDefault();
+    });
+    function dddd(){
+      console.log("fd")
+      socket.emit('take');
+    }
     let nowchannel="Main Chat";
     function make(){
       var namee = prompt("채널 이름을 설정해 주세요");
@@ -410,7 +518,8 @@
         socket.emit('send message',name+"<<<<<<<%:"+message2[0],message2[1],roomname,nowchannel);
         }
       }
-      $("#chatLog").html(`<div id='texst'><strong id="join">+${name}</strong><br></div><div id="divbr"></div>`);
+      $("#chatLog").html(``);
+      $("#asd").html(`<strong style="opacity:0.8;">#</strong><div style="display:inline-block;width:20px;"></div><strong>${chan}</strong>`)
     }
     let roomchannels;
     let roomname="main";
@@ -423,19 +532,17 @@
     if (Notification.permission === 'granted') {}
     });
     let doing="고양이 놀아주는중";
-    document.getElementById("ok").onclick = function(){
+    /*document.getElementById("ok").onclick = function(){
         console.log("okko");
         name = document.getElementById("id").value;
         ps = document.getElementById("ps").value;
         myy=1;
         socket.emit('take');
-      }
-      let myy=0;
+      }*/
       let onuser;
       let onusers;
       $('#message').val('');
-      let lastuser="";
-      var socket = io(); //1
+      let lastuser=""; //1
       $('#chat').on('submit', function(e){ //2
         socket.emit('send message', $('#name').val(), $('#message').val(),roomname,nowchannel);
         $('#message').val('');
@@ -496,35 +603,34 @@
       socket.on('out', function(name){ //4
         $('#chatLog').append(`<div id='texst'><strong id="out">-`+name+'</strong><br></div><div id="divbr"></div>');
       });
-      socket.on('join', function(name){ //4
-        $('#chatLog').append(`<div id='texst'><strong id="join">+`+name+'</strong><br></div><div id="divbr"></div>');
+      socket.on('join', function(names){ //4
+        if(names!=name){
+          $('#chatLog').append(`<div id='texst'><strong id="join">+`+names+'</strong><br></div><div id="divbr"></div>');
+        }
       });
-      let ps;
-      let name;
       socket.on('calltake',function(userr,pss){
+        console.log(userr);
         if(myy!=0){
           myy=0;
         if(userr.indexOf(name)==-1){
           if(name.length>0&&name.length<10){
-          jQuery('#login').hide();
-          jQuery('#logindiv').hide();
-          socket.emit('joinn',name,ps,1);
-          $('#name').val(name)
+            socket.emit('joinn',name,ps,1);
+            $('#name').val(name)
+            reposad();
           }
           else{
-            alert("1글자이상 9글자 이하로 정해주세요");
+            new2("error","1글자이상 9글자 이하로 정해주세요");
           }
         }
         else{
           var psd=pss[userr.indexOf(name)];
           if(psd==ps){
-            jQuery('#login').hide();
-            jQuery('#logindiv').hide();
             socket.emit('joinn',name,ps,0);
             $('#name').val(name)
+            reposad();
           }
           else{
-            alert("이미 있는 계정입니다/비밀번호가 잘못됨")
+            new2("error","이미있거나,비밀번호가 잘못되었습니다");
           }
         }
         }
@@ -545,10 +651,10 @@
           socket.emit('send message',name+"<<<<<<<%:"+message2[0],message2[1],roomname,nowchannel);
           }
         }
-        $("#chatLog").html(`<div id='texst'><strong id="join">+${name}</strong><br></div><div id="divbr"></div>`);
+        $("#chatLog").html(``);
         $("#asdffdsa").html(`<div style="height:8px;"></div>
         <div style="display: inline-block;width:8px;"></div>
-        <ple style="color:white;font-size:25px;"><strong>${roomname}</strong></ple><div></div>
+        <ple style="color:white;font-size:25px;"><strong style="opacity:0.8">${roomname}</strong></ple><div></div>
         <div style="display: inline-block;width:8px;"></div>
         <ple style="color:white;opacity:0.3;font-size:12px;"><strong>${roomuserr}</strong></ple>`);
       }
@@ -580,7 +686,7 @@
             rohtml=rohtml+`
             <div style="display:inline-block;width:70px;height:70px;text-align:center;">
               <div style="height:10px;"></div>
-              <div id="aafsdaf" onclick="myroom('${roname[a]}');">
+              <div id="aafsdaf" onclick="myroom('${roname[a]}');" style="cursor:pointer">
               <div style="height:11px;"></div>
               <ple style="color:white;opacity:0.5;">${roname[a]}</ple>
               </div>
@@ -592,7 +698,7 @@
           $("#joined").html(rohtml+`
             <div style="display:inline-block;width:70px;height:70px;text-align:center;">
               <div style="height:10px;"></div>
-              <div id="aafsdaf" onclick="makero();">
+              <div id="aafsdaf" onclick="makero();"style="cursor:pointer">
               <ple style="color:white;opacity:0.5;font-size:40px;">+</ple>
               </div>
             </div>

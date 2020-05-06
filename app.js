@@ -15,7 +15,7 @@ var roomchannelf=new Array("");
 var roomiso=new Array("배정받지 못한자들의 방");
 var roomchannel=new Array("Main Chat");
 app.get('/',function(req, res){  //2
-  res.sendFile(__dirname + '/index.html'); 
+  res.sendFile(__dirname + '/index.html');
 });
 
 var count=1;
@@ -33,6 +33,7 @@ io.on('connection', function(socket){ //3
   });
   socket.on('take', function(){ //3-2
     io.emit('calltake',userr,pss);
+    console.log('sdf')
   });
   socket.on('makeronm', function(name,user,miso){ //3-2
     if(name!=null){
